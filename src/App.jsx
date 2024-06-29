@@ -6,6 +6,11 @@ import {login, logout} from "./store/authSlice"
 import { Footer, Header } from './components'
 import { Outlet } from 'react-router-dom'
 
+// adding api key of tiny mce
+
+import { Editor } from '@tinymce/tinymce-react';
+
+
 function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
