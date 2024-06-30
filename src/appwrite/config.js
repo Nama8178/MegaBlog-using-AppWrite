@@ -103,7 +103,7 @@ export class Service{
             return await this.bucket.createFile(
                 conf.appwriteBucketId,
                 ID.unique(),
-                file,
+                file
             )
         } catch (error) {
             console.log("Appwrite serive :: uploadFile :: error", error);
@@ -125,10 +125,20 @@ export class Service{
     }
 
     getFilePreview(fileId){
-        return this.bucket.getFilePreview(
-            conf.appwriteBucketId,
-            fileId
-        )
+        if (!fileId) {
+            console.error('Missing fileId parameter in getFilePreview');
+            return ''; // or handle accordingly
+        }
+    
+        try {
+            return this.bucket.getFilePreview(
+                conf.appwriteBucketId,
+                fileId,
+            );
+        } catch (error) {
+            console.error('Error fetching file preview:', error);
+            return ''; // or handle accordingly
+        }
     }
 }
 
